@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <title>טופס רישום כיבוד לאירוע</title>
     
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+    <!-- Firebase SDK -->import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
     
     <style>
         body {
@@ -123,20 +122,20 @@
     <script>
         // Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyATX2WOLJpPqjmz7KOgJOxkAQIJb1gPaGc",
-            authDomain: "eventfood-ef0c0.firebaseapp.com",
-            projectId: "eventfood-ef0c0",
-            storageBucket: "eventfood-ef0c0.appspot.com",
-            messagingSenderId: "925267257635",
-            appId: "1:925267257635:web:49fc24f5fa24a81583f877",
-            databaseURL: "https://eventfood-ef0c0-default-rtdb.europe-west1.firebasedatabase.app"
+  const firebaseConfig = {
+    apiKey: "AIzaSyBtwBQ6jlI9OzROPzpUmgl8Ot6t0mkY4KQ",
+    authDomain: "team-7ad2b.firebaseapp.com",
+    projectId: "team-7ad2b",
+    storageBucket: "team-7ad2b.appspot.com",
+    messagingSenderId: "1046714446411",
+    appId: "1:1046714446411:web:c75d7727c878a9c5cdd3ce",
+    measurementId: "G-0X8ELKX2B9"
         };
 
         // אתחול Firebase
         firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        const foodListRef = database.ref('foodList');
-
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
         // טעינת נתונים בעת טעינת הדף
         document.addEventListener('DOMContentLoaded', loadData);
 
