@@ -29,6 +29,11 @@
             padding: 10px;
             font-size: 14px;
         }
+        input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -41,36 +46,53 @@
             </tr>
         </thead>
         <tbody>
-            <!-- שורות יתווספו כאן -->
+            <tr>
+                <td><input type="text" name="nickname"></td>
+                <td><input type="text" name="refreshment"></td>
+            </tr>
         </tbody>
     </table>
     <button onclick="saveData()">שמירה</button>
     <button onclick="editData()">שינוי</button>
-    <button onclick="addColumn()">הוספת עמודה</button>
+    <button onclick="addRow()">הוספת שורה</button>
 
     <script>
         function saveData() {
-            // פונקציה לשמירת הנתונים
+            let table = document.getElementById('refreshmentTable');
+            let data = [];
+            for (let i = 1; i < table.rows.length; i++) {
+                let row = table.rows[i];
+                let nickname = row.cells[0].querySelector('input').value;
+                let refreshment = row.cells[1].querySelector('input').value;
+                data.push({ nickname, refreshment });
+            }
+            localStorage.setItem('refreshmentData', JSON.stringify(data));
             alert('נתונים נשמרו!');
         }
 
         function editData() {
-            // פונקציה לשינוי הנתונים
-            alert('נתונים שונו!');
+            let data = JSON.parse(localStorage.getItem('refreshmentData'));
+            if (data) {
+                let table = document.getElementById('refreshmentTable');
+                for (let i = 0; i < data.length; i++) {
+                    let row = table.insertRow();
+                    let cell1 = row.insertCell(0);
+                    let cell2 = row.insertCell(1);
+                    cell1.innerHTML = `<input type="text" value="${data[i].nickname}">`;
+                    cell2.innerHTML = `<input type="text" value="${data[i].refreshment}">`;
+                }
+            } else {
+                alert('אין נתונים לשינוי!');
+            }
         }
 
-        function addColumn() {
-            // פונקציה להוספת עמודה
-            let table = document.getElementById('refreshmentTable');
-            let headers = table.getElementsByTagName('th');
-            let newHeader = document.createElement('th');
-            newHeader.innerText = 'עמודה חדשה';
-            table.rows[0].appendChild(newHeader);
-
-            for (let i = 1; i < table.rows.length; i++) {
-                let newCell = table.rows[i].insertCell(-1);
-                newCell.innerText = 'תוכן חדש';
-            }
+        function addRow() {
+            let table = document.getElementById('refreshmentTable').getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow();
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+            cell1.innerHTML = '<input type="text" name="nickname">';
+            cell2.innerHTML = '<input type="text" name="refreshment">';
         }
     </script>
 </body>
