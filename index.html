@@ -20,7 +20,7 @@
             border: 1px solid white;
             padding: 8px;
             text-align: right; /* יישור לימין */
-            width: 20%; /* מספיק לטקסט קצר */
+            width: 5cm; /* רוחב 5 סנטימטר */
         }
         th {
             background-color: #6A0DAD; /* סגול כהה יותר */
@@ -29,6 +29,18 @@
             margin: 5px;
             padding: 10px;
             font-size: 14px;
+        }
+        #saveButton {
+            background-color: #4CAF50; /* ירוק */
+            color: white;
+        }
+        #editButton {
+            background-color: #FF9800; /* כתום */
+            color: white;
+        }
+        #addButton {
+            background-color: #2196F3; /* כחול */
+            color: white;
         }
         input {
             width: 100%;
@@ -53,9 +65,9 @@
             </tr>
         </tbody>
     </table>
-    <button onclick="saveData()">שמירה</button>
-    <button onclick="editData()">שינוי</button>
-    <button onclick="addRow()">הוספת שורה</button>
+    <button id="saveButton" onclick="saveData()">שמירה</button>
+    <button id="editButton" onclick="editData()">שינוי</button>
+    <button id="addButton" onclick="addRow()">הוספת שורה</button>
 
     <script>
         function saveData() {
